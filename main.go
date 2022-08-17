@@ -28,18 +28,18 @@ import (
 func main() {
 	app := cmds.NewApp()
 	app.Commands = []cli.Command{
-		cmds.NewServerCommand(server.Run),
-		cmds.NewAgentCommand(agent.Run),
-		cmds.NewKubectlCommand(kubectl.Run),
-		cmds.NewCRICTL(crictl.Run),
-		cmds.NewEtcdSnapshotCommand(etcdsnapshot.Save,
+		cmds.NewServerCommand(server.Run),   // master 入口
+		cmds.NewAgentCommand(agent.Run),     // worker 入口
+		cmds.NewKubectlCommand(kubectl.Run), // cli 入口
+		cmds.NewCRICTL(crictl.Run),          // cri容器运行时 docker cli管理入口
+		cmds.NewEtcdSnapshotCommand(etcdsnapshot.Save, // etcd快照管理命令cli入口
 			cmds.NewEtcdSnapshotSubcommands(
 				etcdsnapshot.Delete,
 				etcdsnapshot.List,
 				etcdsnapshot.Prune,
 				etcdsnapshot.Save),
 		),
-		cmds.NewSecretsEncryptCommand(cli.ShowAppHelp,
+		cmds.NewSecretsEncryptCommand(cli.ShowAppHelp, //资源help文档打印入口
 			cmds.NewSecretsEncryptSubcommands(
 				secretsencrypt.Status,
 				secretsencrypt.Enable,
@@ -48,7 +48,7 @@ func main() {
 				secretsencrypt.Rotate,
 				secretsencrypt.Reencrypt),
 		),
-		cmds.NewCertCommand(
+		cmds.NewCertCommand( // 鉴权工具入口
 			cmds.NewCertSubcommands(
 				cert.Run),
 		),
