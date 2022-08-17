@@ -11,11 +11,15 @@ var (
 )
 
 type Server struct {
+
 	ClusterCIDR          cli.StringSlice	// (networking) IPv4/IPv6 network CIDRs to use for pod IPs (default: 10.42.0.0/16) 定义pod 使用的（虚拟）网段的参数
+	
 	AgentToken           string		// (cluster) Shared secret used to join agents to the cluster, but not servers. 将k8s worker node加入k8s cluster的命令：kubeadm join --discovery-token abcdef.1234567890abcdef
+	
 	AgentTokenFile       string		// File containing the agent secret
 	
 	Token                string		// Shared secret used to join a server or agent to a cluster. 将一个k8s server node加入k8s cluster的命令
+	
 	TokenFile            string		// (cluster) File containing the cluster-secret/token
 	
 	ClusterSecret        string
