@@ -122,7 +122,7 @@ INSTALL_K3S_SKIP_SELINUX_RPM=true 安装的时候跳过安装selinux
 
 curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_SELINUX_RPM=true sh -
 
-curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_SELINUX_RPM=true sh -s - --docker  使用docker安装
+curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_SELINUX_RPM=true INSTALL_K3S_VERSION=v1.21.14+k3s1 sh -s - server --docker  使用docker安装
 
 安装日志如下：
 [INFO]  Finding release for channel stable
@@ -160,8 +160,17 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/k3s.service to 
 [INFO]  systemd: Starting k3s
 
 
+k3s安装：
+安装docker:
+curl https://releases.rancher.com/install-docker/20.10.sh | sh
+安装k3s:
+需要指定版本为1.21
+curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_SELINUX_RPM=true INSTALL_K3S_VERSION=v1.21.14+k3s1 INSTALL_K3S_SKIP_DOWNLOAD=true sh -s - server --docker --token=SECRET
 
-
+curl -sfL https://get.k3s.io | sh -s - server \
+  --token=SECRET \
+查看pod：
+$ sudo k3s kubectl get pods --all-namespaces
 
 
 
