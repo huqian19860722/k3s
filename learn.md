@@ -120,6 +120,7 @@ curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetok
 
 INSTALL_K3S_SKIP_SELINUX_RPM=true 安装的时候跳过安装selinux
 curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_SELINUX_RPM=true sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_SELINUX_RPM=true sh -s - --docker  使用docker安装
 安装日志如下：
 [INFO]  Finding release for channel stable
 [INFO]  Using v1.24.3+k3s1 as release
